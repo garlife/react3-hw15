@@ -9,3 +9,11 @@ img {
   width: 70%;
   height: 1000px;
 }
+
+menu {
+  border: 1px solid #ddd;
+  background-color: lightblue;
+  border-radius: 4px;
+  padding: 5px;
+  
+}
