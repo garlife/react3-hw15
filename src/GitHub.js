@@ -1,10 +1,21 @@
 import React from "react";
+import View from "./ViewIssue";
 
-export default function GitHub()
-{
-    return(
-        <>
-            <h1>git issues</h1>
-        </>
-    )
+const columnsFromBackend = {
+  open: {
+    name: "Open",
+    items: [],
+  },
+  close: {
+    name: "Close",
+    items: [],
+  },
+};
+
+export default function GitHub() {
+  return (
+    <>
+      <View columnsFromBackend={columnsFromBackend} />
+    </>
+  );
 }
