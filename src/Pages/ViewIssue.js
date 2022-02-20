@@ -1,8 +1,8 @@
 import React, { PureComponent, useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import onDragEnd from "./OnDragEnd";
-import LoadData from "./API/LoadData";
-import CreateIssue from "./API/CreateIssue";
+import onDragEnd from "../OnDragEnd";
+import {LoadItem} from "../API/Services";
+import {CreateIssue} from "../API/Services";
 import { Button, Modal, Input } from "antd";
 import { PlusOutlined, GithubOutlined } from "@ant-design/icons";
 
@@ -32,7 +32,7 @@ function View({ columnsFromBackend }) {
   const [columns, setColumns] = useState(columnsFromBackend);
 
   useEffect(() => {
-    LoadData(setColumns);
+    LoadItem(setColumns);
   }, []);
 
   return (
@@ -42,7 +42,7 @@ function View({ columnsFromBackend }) {
         ghost
         onClick={() => {
           console.log("load data");
-          LoadData(setColumns);
+          LoadItem(setColumns);
         }}
       >
         Обновить

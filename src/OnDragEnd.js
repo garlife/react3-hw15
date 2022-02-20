@@ -1,5 +1,5 @@
 
-import UpdateIssue from "./API/UpdateIssue";
+import {UpdateIssue} from "./API/Services";
 
 
 const onDragEnd = (result, columns, setColumns) => {
