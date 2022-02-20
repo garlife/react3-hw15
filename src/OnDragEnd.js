@@ -1,6 +1,4 @@
 
-import React, { PureComponent, useState, useEffect } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import UpdateIssue from "./API/UpdateIssue";
 
 

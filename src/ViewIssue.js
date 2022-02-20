@@ -3,9 +3,29 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import onDragEnd from "./OnDragEnd";
 import LoadData from "./API/LoadData";
 import CreateIssue from "./API/CreateIssue";
-import { Table, Button, Modal, Input, Space } from 'antd';
+import { Button, Modal, Input } from "antd";
+import { PlusOutlined, GithubOutlined } from "@ant-design/icons";
 
-const titleIssue = "title";
+const { TextArea } = Input;
+
+export const setTitleIssue = (titleIssueText) => {
+  Modal.success({
+    title: "Введите текст обращения",
+    content: (
+      <TextArea
+        onChange={(event) => {
+          titleIssueText = event.target.value;
+        }}
+        rows="4"
+      />
+    ),
+    afterClose: () => {
+      CreateIssue(titleIssueText, bodyText);
+    },
+    okText: "Отправить",
+  });
+};
+
 const bodyText = "created issue by API";
 
 function View({ columnsFromBackend }) {
@@ -15,7 +35,6 @@ function View({ columnsFromBackend }) {
     LoadData(setColumns);
   }, []);
 
-  
   return (
     <>
       <Button
@@ -33,10 +52,14 @@ function View({ columnsFromBackend }) {
         ghost
         onClick={() => {
           console.log("create issue");
-          CreateIssue(titleIssue, bodyText);
+          setTitleIssue();
         }}
+        icon={<PlusOutlined />}
       >
         Создать issue
+      </Button>
+
+      <Button type="link" href="https://github.com/garlife/react3-hw15/issues" target="_blank" size="large" icon={<GithubOutlined />}>GitHub
       </Button>
 
       <div
@@ -60,7 +83,7 @@ function View({ columnsFromBackend }) {
                 }}
                 key={columnId}
               >
-                <h2>{column.name}</h2>
+                <h2>Статус Issues: {column.name}</h2>
                 <div style={{ margin: 8 }}>
                   <Droppable droppableId={columnId} key={columnId}>
                     {(provided, snapshot) => {

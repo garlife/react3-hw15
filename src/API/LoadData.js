@@ -1,39 +1,39 @@
-
 const loadItem = (setColumns) => {
-    fetch('https://api.github.com/repos/garlife/react3-hw15/issues')
-      .then((response) => response.json())
-      .then((data) =>
-        data.map((item) => ({
-          id: `${item.number}`,
-          content: item.title,
-          data,
-          state: item.state,
-        }))
-      )
-      .then((data) => {
-        const columns = {
-          open: {
-            name: 'Open',
-            items: [],
-          },
-          close: {
-            name: 'Close',
-            items: [],
-          },
+  fetch("https://api.github.com/repos/garlife/react3-hw15/issues")
+    .then((response) => response.json())
+    .then((data) =>
+      data.map((item) => ({
+        id: `${item.number}`,
+        content: item.title,
+        data,
+        state: item.state,
+      }))
+    )
+    .then((data) => {
+      const columns = {
+        open: {
+          name: "Open",
+          items: [],
+        },
+        close: {
+          name: "Close",
+          items: [],
+        },
+      };
+      console.log(data);
+      for (let key of data
+        .map((el) => el.state)
+        .filter((value, index, array) => array.indexOf(value) === index)) {
+        columns[key] = {
+          name: key,
+          items: data.filter((el) => el.state === key),
         };
-        for (let key of data
-          .map((el) => el.state)
-          .filter((value, index, array) => array.indexOf(value) === index)) {
-          columns[key] = {
-            name: key,
-            items: data.filter((el) => el.state === key),
-          };
-        }
-  
-        // console.log(columns);
-        return columns;
-      })
-      .then((data) => setColumns(data));
-  };
-  
-  export default loadItem;
+      }
+
+      // console.log(columns);
+      return columns;
+    })
+    .then((data) => setColumns(data));
+};
+
+export default loadItem;
