@@ -34,7 +34,7 @@ const CompMenu = (props) => {
                   <span>Github Issues</span>
                   <Link to="/gitIssues" />
                 </Menu.Item>
-                <Menu.Item key="4">
+                <Menu.Item key="5">
                   <Button icon={<PlusOutlined />} shape="circle"></Button>
                   <Link to="/gitIssues" onClick={setTitleIssue} />
                 </Menu.Item>

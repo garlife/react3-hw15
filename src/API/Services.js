@@ -1,4 +1,4 @@
-const API_TOKEN = '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';
+const API_TOKEN = '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';
 
 export const CreateIssue = (titleIssue, bodyText) => {
   fetch(
